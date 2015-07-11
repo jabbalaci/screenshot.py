@@ -8,15 +8,19 @@ the real job. The advantage of `screenshot.py` is its very simple usage.
 ### Usage
 
 * `screenshot.py -h`
+
   Help.
 
 * `screenshot.py -full http://reddit.com full.jpg`
+
   Screenshot of the entire page (can be very high).
 
 * `screenshot.py -window http://reddit.com window.jpg`
+
   Screenshot of the area that you see in the browser.
 
 * `screenshot.py -thumb http://reddit.com thumb.jpg`
+
   Thumbnail of the area that you see in the browser.
 
 ### Customization
