@@ -36,7 +36,9 @@ for more information on how to install PhantomJS. We also need the
 `rasterize.js` script that comes with PhantomJS. You can find a copy of it
 in the `assets/` folder.
 
-### Author
+### Author / Links
 
 * Laszlo Szathmary, alias Jabba Laci (<jabba.laci@gmail.com>), 2015
-* <https://pythonadventures.wordpress.com/>
+* <https://pythonadventures.wordpress.com/2015/07/26/screenshot-py/>
+* reddit discussion: <http://redd.it/3cyka8>
+* appeared in ImportPython Weekly Newsletter - Issue No 39 (<http://importpython.com/newsletter/no/39/>)
