@@ -41,4 +41,4 @@ in the `assets/` folder.
 * Laszlo Szathmary, alias Jabba Laci (<jabba.laci@gmail.com>), 2015
 * <https://pythonadventures.wordpress.com/2015/07/26/screenshot-py/>
 * reddit discussion: <http://redd.it/3cyka8>
-* appeared in ImportPython Weekly Newsletter - Issue No 39 (<http://importpython.com/newsletter/no/39/>)
+* appeared in [ImportPython Weekly Newsletter - Issue No 39](http://importpython.com/newsletter/no/39/)
