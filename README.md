@@ -23,6 +23,14 @@ the real job. The advantage of `screenshot.py` is its very simple usage.
 
   Thumbnail of the area that you see in the browser.
 
+* Sometimes there is a problem with the JavaScript on the given webpage,
+  which can cause PhantomJS to crash :( In this case disable JS rendering
+  with the `--nojs` extra option. Then use the script as explained above.
+
+  Example:
+
+  `screenshot.py --nojs -thumb http://buggy-js.com thumb.jpg`
+
 ### Customization
 
 Check out the beginning of the source code. You may want to change `WIDTH`
@@ -34,7 +42,9 @@ and `THUMB_WIDTH`.
 is part of the ImageMagick package. See <http://phantomjs.org/build.html>
 for more information on how to install PhantomJS. We also need the
 `rasterize.js` script that comes with PhantomJS. You can find a copy of it
-in the `assets/` folder.
+in the `assets/` folder. I also put a customized version of the rendering
+script to the `assets/` folder called `rasterize-nojs.js` that disables
+JavaScript rendering on the given webpage.
 
 ### Author / Links
 
@@ -42,3 +52,4 @@ in the `assets/` folder.
 * <https://pythonadventures.wordpress.com/2015/07/26/screenshot-py/>
 * reddit discussion: <http://redd.it/3cyka8>
 * appeared in [ImportPython Weekly Newsletter - Issue No 39](http://importpython.com/newsletter/no/39/)
+

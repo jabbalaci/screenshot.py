@@ -7,18 +7,7 @@ screenshot.py
 
 Taking a screenshot of a webpage.
 
-Usage:
-  * screenshot.py -h
-      Help.
-
-  * screenshot.py -full http://reddit.com out.jpg
-      Screenshot of the entire page (can be very high).
-
-  * screenshot.py -window http://reddit.com out.jpg
-      Screenshot of the area that you see in the browser.
-
-  * screenshot.py -thumb http://reddit.com out.jpg
-      Thumbnail of the area that you see in the browser.
+Usage: see the README.md file.
 
 Author: Laszlo Szathmary, alias Jabba Laci (jabba.laci@gmail.com), 2015
 Blog:   https://pythonadventures.wordpress.com/
@@ -38,15 +27,22 @@ THUMB_WIDTH = 250
 RATIO = 4 / 3
 HEIGHT = int(WIDTH / RATIO)
 ROOT = os.path.dirname(os.path.abspath(__file__))
+# enable JS execution:
 RASTERIZE_SCRIPT = "{root}/assets/rasterize.js".format(root=ROOT)
+# disable JS execution:
+RASTERIZE_NOJS_SCRIPT = "{root}/assets/rasterize-nojs.js".format(root=ROOT)
+# raterize script to use
+# default: JS enabled
+RASTERIZE_SCRIPT_TO_USE = RASTERIZE_SCRIPT
 
 
 def print_help():
     print("""
 Taking a screenshot of a webpage.
-Usage: {0} option URL output
+Usage: {0} [--nojs] option URL output
 Options:
   -h, --help    this help
+  --nojs        disable JavaScript execution on the webpage
   -window       clip a window (size: {w}*{h})
   -full         entire page
   -thumb        make a thumbnail
@@ -84,21 +80,21 @@ def check_required_files():
         print("Error: convert is not available.")
         print("Tip: it's part of the ImageMagick package.")
         exit(1)
-    if not os.path.isfile(RASTERIZE_SCRIPT):
-        print("Error: {f} is missing.".format(f=RASTERIZE_SCRIPT))
+    if not os.path.isfile(RASTERIZE_SCRIPT_TO_USE):
+        print("Error: {f} is missing.".format(f=RASTERIZE_SCRIPT_TO_USE))
         exit(1)
 
 
 def window_screenshot(url, fname):
     return 'phantomjs {rast} "{url}" {out} "{w}px*{h}px"'.format(
-        rast=RASTERIZE_SCRIPT, url=url, out=fname,
+        rast=RASTERIZE_SCRIPT_TO_USE, url=url, out=fname,
         w=WIDTH, h=HEIGHT
     )
 
 
 def full_screenshot(url, fname):
     return 'phantomjs {rast} "{url}" {out} {w}px'.format(
-        rast=RASTERIZE_SCRIPT, url=url, out=fname, w=WIDTH
+        rast=RASTERIZE_SCRIPT_TO_USE, url=url, out=fname, w=WIDTH
     )
 
 
@@ -130,6 +126,10 @@ def process_parameters(option, url, fname):
 
 if __name__ == "__main__":
     check_required_files()
+    #
+    if '--nojs' in sys.argv:
+        RASTERIZE_SCRIPT_TO_USE = RASTERIZE_NOJS_SCRIPT
+        sys.argv.remove('--nojs')
     #
     if len(sys.argv) == 1:
         print_help()
